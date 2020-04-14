@@ -1,0 +1,109 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8">
+<title>Resume</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.css">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Raleway:500,200,700" rel="stylesheet">
+<style>
+h1,h2,h3,h4,h5,h6,p,a,li,span{font-family:'Raleway',sans-serif}.resume{background-color:#1f1f1f;min-height:100vh}.resume .main{height:100%;width:700px;background-color:#fff;padding:0 25px;margin:0 auto}.resume .main .header{border-bottom:2px solid #ddd}.resume .main .header .page-title-container{margin:0 auto;text-align:center;padding-bottom:10px}.resume .main .header .page-title{font-size:48pt;display:inline}.resume .main .header .page-title-first{font-weight:400}.resume .main .header .page-title-last{font-weight:200}.resume .main .header .header-icons{text-align:center}.resume .main .header .header-icons .page-subhead{margin:1rem 15px;display:inline}.resume .main .header .fa{padding-right:10px}.resume .main .indented{padding-left:40px}.resume .main .category-row{padding-bottom:2px}.resume .main .category-row .category{margin-right:10px;padding-left:5px;padding-right:10px;border-bottom:1px solid #ddd;border-right:1px solid #ddd}.resume .main .category-row .category-row-title{margin:.4rem 0}.resume .main .category-row .category-title,.resume .main .category-row .category-subtitle{display:inline;margin-top:10px;margin-bottom:5px}.resume .main .category-row .category-bullets{margin-top:5px}.resume .main .category-row p,.resume .main .category-row li{font-size:smaller}sidebar-category:last-of-type .category{border-bottom:0!important;padding-bottom:0!important;margin-bottom:0!important}category:last-of-type category-item:last-of-type .category{border-bottom:0!important;padding-bottom:0!important;margin-bottom:0!important}a.page-subhead{color:initial;text-decoration:none}
+</style>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-animate.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-aria.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-messages.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.js"></script>
+<script>angular.module("Resume",["ngMaterial"]).component("resume",{transclude:true,template:'<div class="resume">\n    <section class="main" ng-transclude></section>\n  </div>'}).component("resumeHeading",{controllerAs:"r",bindings:{firstName:"@",lastName:"@",website:"@",phone:"@",email:"@",github:"@",linkedin:"@"},template:'<div class="header">\n    <div class="page-title-container">\n      <h1 class="page-title page-title-first">{{r.firstName}}</h1>\n      <h1 class="page-title page-title-last">{{r.lastName}}</h1>\n    </div>\n    <div class="header-icons">\n      <a ng-if="r.website" class="md-subhead page-subhead" ng-href="https://{{r.website}}" target="_blank">\n        <i class="fa fa-lg fa-code"></i>{{r.website}}\n      </a>\n      <span ng-if="r.phone" class="md-subhead page-subhead">\n        <i class="fa fa-lg fa-phone"></i>{{r.phone}}\n      </span>\n      <a ng-if="r.email" class="md-subhead page-subhead" ng-href="mailto:{{r.email}}" target="_blank">\n        <i class="fa fa-lg fa-envelope"></i>{{r.email}}\n      </a>\n      <a ng-if="r.github" class="md-subhead page-subhead" ng-href="https://github.com/{{r.github}}" target="_blank">\n        <i class="fa fa-lg fa-github"></i>{{r.github}}\n      </a>\n      <a ng-if="r.linkedin" class="md-subhead page-subhead" ng-href="https://linkedin.com/in/{{r.linkedin}}" target="_blank">\n        <i class="fa fa-lg fa-linkedin-square"></i>{{r.linkedin}}\n      </a>\n    </div>\n  </div>'}).component("resumeBody",{transclude:true,template:'<div layout="row" ng-transclude></div>'}).component("resumeColumn",{transclude:true,template:"<div ng-transclude></div>"}).component("sidebarCategory",{controllerAs:"r",bindings:{name:"@"},transclude:true,template:'<div flex="" class="category-row">\n    <div class="category">\n      <h5 class="category-row-title">{{r.name}}</h5>\n      <ng-transclude></ng-transclude>\n    </div>\n  </div>'}).component("category",{controllerAs:"r",bindings:{name:"@"},transclude:true,template:'<div flex="" class="category-row">\n    <h4 class="category-row-title">{{r.name}}</h4>\n    <ng-transclude></ng-transclude>\n  </div>'}).component("categoryItem",{controllerAs:"r",bindings:{title:"@",subtitle:"@"},transclude:true,template:'<div class="category">\n      <h5 class="category-title md-body-2">{{r.title}}</h5>&nbsp;\n      <h5 class="category-subtitle md-caption">{{r.subtitle}}</h5>\n      <ul class="category-bullets" ng-transclude></ul>\n  </div>'});
+</script>
+
+<script>
+    // DO NOT TOUCH. plz.
+    window.addEventListener('DOMContentLoaded', () => {
+        const publications = document.querySelector('#publications .category');
+        publications.childNodes.forEach(node => {
+            if (node instanceof Text) {
+                publications.removeChild(node)
+            }
+        });
+    });
+</script>
+
+<style>
+    .page-title {
+        /* Change this number to adjust the size of your name. */
+        font-size: 36pt !important;
+    }
+</style>
+
+</head><body ng-app="Resume" ng-cloak="">
+    <resume>
+        <resume-heading first-name="Jamie" last-name="Freitag" linkedin="jamie-freitag-081497123" email="jamielfreitag@gmail.com" phone="631-456-9168">
+        </resume-heading>
+        <resume-body>
+            <resume-column flex="13">
+                <sidebar-category name="Education">
+                    <p>Rensselaer Polytechic Institue</p>
+                    <p>Graduated December 2016</p>
+                    <p>B.S. Materials Engineering</p>
+                    <p>Sustainability Studies Minor</p>
+                </sidebar-category>
+                <sidebar-category name="Skills">
+                    <p>Microscopy (SEM, AFM, optical)</p>
+                    <p>Statistical Analysis (MiniTab)</p>
+                    <p>MS Office Suite</p>
+                    <p>Adobe Standard</p>
+                </sidebar-category>
+                <sidebar-category name="Coursework">
+                    <p>Synthesis and Processing of Materials</p>
+                    <p>Materials Selection</p>
+                    <p>Computational Materials Design</p>
+                    <p>Mechanical Properties of Materials</p>
+                    <p>Modeling and Analysis of Uncertainty</p>
+                    <p>Thermodynamics of Materials</p>
+                </sidebar-category>
+            </resume-column>
+            <resume-column flex="87">
+                <category name="Professional Experience">
+                    <category-item title="Qualification Engineer" subtitle="Hexcel Corporation (May 2018-Present)">
+                        <li>qualifications of fiber-reinforced polymer products for aerospace applications</li>
+                        <li>Interpret customer specifications and write statements of work to outline the process for qualifying new/changed products</li>
+                        <li>Source necessary test material, write instructions for layups and cures, and manage mechanical/chemical testing of specimens</li>
+                        <li>Evaluate test data for compliance with customer specifications and for acceptable statistical comparison with qualified materials/processes</li>
+                        <li>Compile production documentation, test results, and statistical analysis into qualification reports/data packages to demonstrate material performance</li>
+                    </category-item>
+                    <category-item title="Lab Technician" subtitle="R&D Technical Services, Hexcel Corporation (December 2017-May 2018)">
+                        <li>Fabricated panels from pre-impregnated carbon fiber material, including hand lay-up, vacuum bagging, and autoclave cure</li>
+                        <li>Mixed samples of experimental epoxy resin formulations for chemical/analytical characterization</li>
+                        <li>Documented observations of appearance, texture, and workability for experimental products</li>
+                    </category-item>
+                    <category-item title="Mechanical/Structural Design Engineering Intern" subtitle="Exelon Nuclear (Summer 2016)">
+                        <li>Supported flow accelerated corrosion (FAC) mitigation program by performing calculations to determine minimum wall thicknesses for power plant piping components</li>
+                        <li>Compiled ten FAC failure analysis reports on components recommended for measurement and/or replacement during a maintenance outage</li>
+                        <li>Audited documentation of hazardous chemicals stored in the plant vicinity to ensure complete records were available for safety analysis reports, habitability studies, and environmental regulatory agencies</li>
+                    </category-item>
+                </category-item>
+                <category-item title="Researcher" subtitle="Ecovative Design, LLC (June 2015-December 2015)">
+                    <li>Investigated process/structure/property relationships for mushroom-based packaging materials</li>
+                    <li>Fabricated samples of developmental biocomposite samples in sterile laboratory environment</li>
+                    <li>Analyzed mechanical test results for correlation with fabrication methodology</li>
+                    <li>Characterized microstructural features of experimental composites using microscopy to assess possible opportunities for property optimization</li>
+                </category-item>
+                </category>
+                <category id="publications" name="Publications">
+                    <category-item>
+                        <li>Tudryn, G. J., Smith, L. C., Freitag, J., Bucinell, R., Schadler, L. S. (2017). Processing and
+                            Morphology Impacts on Mechanical Properties of Fungal Based Biopolymer Composites.
+                            Journal of Polymers and the Environment.   </li>
+                    </category-item>
+                </category>
+                <category name="Projects">
+                    <category-item title="Rensselaer Electric Vehicle">
+                        <li><b>Vice President (May 2015-May 2016):</b> Managed team finances/purchasing and communicated with sponsor companies and Institute leadership</li>
+                        <li><b>Assistant Body/Chassis Lead (August 2014-May 2015):</b> Designed and fabricated electric vehicle driver's compartment. Worked with other REV sub-team leaders to integrate systems and build a vehicle to compete in the Shell Eco Marathon</li>
+                    </category-item>
+                </category>
+            </resume-column>
+        </resume-body>
+    </resume>
+
+
+</body></html>
